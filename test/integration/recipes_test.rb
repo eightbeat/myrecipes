@@ -3,7 +3,7 @@ require 'test_helper'
 class RecipesTest < ActionDispatch::IntegrationTest
 
   def setup
-    @chef = Chef.create!(name: "taro", email: "taro@example.com", 
+    @chef = Chef.create!(name: "taro", email: "taro@example.com",
             password: "password", password_confirmation: "password")
     @recipe = Recipe.create!(name: "vegetable soute", description: "great vegetable soute, add vegetable and oil", chef: @chef)
     @recipe2 = @chef.recipes.build(name: "chicken soute", description: "great chicken dish")
@@ -24,6 +24,7 @@ class RecipesTest < ActionDispatch::IntegrationTest
   end
 
   test "should get recipes show" do
+    sign_in_as(@chef, "password")
     get recipe_path(@recipe)
     assert_template 'recipes/show'
     assert_match @recipe.name, response.body
@@ -35,6 +36,7 @@ class RecipesTest < ActionDispatch::IntegrationTest
   end
 
   test "create new valid recipe" do
+    sign_in_as(@chef, "password")
     get new_recipe_path
     assert_template 'recipes/new'
     name_of_recipe = "chicken saute"
@@ -48,6 +50,7 @@ class RecipesTest < ActionDispatch::IntegrationTest
   end
 
   test "reject invalid recipe submissions" do
+    sign_in_as(@chef, "password")
     get new_recipe_path
     assert_template 'recipes/new'
     assert_no_difference  'Recipe.count' do

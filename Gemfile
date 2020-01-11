@@ -40,6 +40,13 @@ gem 'bootstrap-will_paginate', '1.0.0'
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.1.0', require: false
 
+gem 'carrierwave', '0.11.2'
+gem 'mini_magick'
+# gem 'fog'
+
+ gem 'piet'
+# gem 'rmagick'
+
 group :development, :test do
   gem 'sqlite3'
   gem 'rails-controller-testing'

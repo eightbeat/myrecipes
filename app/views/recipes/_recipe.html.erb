@@ -33,6 +33,9 @@
           <% end %> <%= recipe.thumbs_down_total %>
         </div>
       </div>
+      <div class="col-md-2">
+        <%= image_tag(recipe.image.url, size: "150x100") if recipe.image? %>
+      </div>
     </div>
   </div>
 <% end %>
